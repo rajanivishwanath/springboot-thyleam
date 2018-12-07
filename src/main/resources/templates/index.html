@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Welcome</title>
+</head>
+<body>
+<h1 th:utext="${message}"></h1>
+
+<form th:action="@{/index}"
+         th:object="${dateForm}" method="POST">
+         
+         <div class="container">
+         Start Date:
+         <input type="date" th:field="*{startDate}" />    
+        <br/>
+        <br/>
+         End Date:
+         <input type="date" th:field="*{endDate}" />     
+         <br/>
+         <br/>
+         <input type="submit" value="Confirm" />
+         </div>
+</form>
+       
+<br/>
+       
+<!-- Check if errorMessage is not null and not empty -->
+ 
+<div th:if="${errorMessageMandatory}" th:utext="${errorMessageMandatory}"
+   style="color:red;font-style:italic;">
+   
+</div>
+<!-- Check if end date is before start date -->
+
+<div th:if="${errorMessageDiscrepancyCheck}" th:utext="${errorMessageDiscrepancyCheck}"
+   style="color:red;font-style:italic;">
+</div>
+
+<!-- Display number of days in between start and end date -->
+
+<div th:if="${daysInfo}" th:utext="${daysInfo}"
+   style="color:blue;font-style:bold;">
+</div>
+      
+</body>
+</html>
